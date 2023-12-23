@@ -1,0 +1,83 @@
+" vimrc Sloane Veronica Allison Ripley
+" last updated December 22, 2023
+" sloane@lodesoft.io
+
+" SETTINGS
+
+" Move .netwhist to .cache/vim
+let g:netrw_home=$XDG_CACHE_HOME.'/vim'
+
+" Turn on syntax highlighting
+syntax on
+filetype on
+
+" Set hybrid line numbers on
+set number
+set relativenumber
+
+" Set text to not wrap
+set nowrap
+
+" Set indent to 4 spaces and use > and < to round indent to multiples of that
+set shiftround shiftwidth=4
+set tabstop=4
+set shiftwidth=4
+set expandtab
+set autoindent
+set softtabstop=4
+
+" Prevent cursor from jumping to other paren on hovering
+set matchtime=0
+
+" MAPPINGS
+
+" jk to escape
+inoremap jk <esc>
+
+" Remove arrow key functionality in normal mode
+inoremap <Up> <nop>
+inoremap <Down> <nop>
+inoremap <Left> <nop>
+inoremap <Right> <nop>
+
+" 'Stronger' H and L to go to beginning/end of lines
+nnoremap H 0
+nnoremap L A<esc>
+
+" Set Leader key to backslash
+let mapleader = "\\"
+let maplocalleader = "-"
+
+" Multi: Map ctrl-u to convert the current word to all caps
+nnoremap <leader>u viwU<esc>
+inoremap <leader>u <esc>viwU<esc>i
+
+" Normal: Pull up/source vimrc
+:nnoremap <leader>ev :vsplit $MYVIMRC<cr>
+:nnoremap <leader>sv :source $MYVIMRC<cr>
+
+" Normal: - to move one line down, and _ to move it up one line
+nnoremap <leader>- <s-v>dp
+nnoremap <leader>_ <s-v>dkP
+
+" Normal: <space> to wrap/unwrap a fold
+nnoremap <leader><space> za
+
+" Normal: Place quotes, brackets, parens, etc around current word
+nnoremap <leader>' viw<esc>a'<esc>hbi'<esc>lel
+nnoremap <leader>" viw<esc>a"<esc>hbi"<esc>lel
+
+" Visual: Place quotes, brackets, parens, etc around current selection
+" Note: Consider replacing with o/O?
+vnoremap <leader>' <esc>`<i'<esc>`>a'<esc>
+vnoremap <leader>" <esc>`<i"<esc>`>a"<esc>
+
+" Iabbrevs
+iabbrev @@ sloane@lodesoft.io
+iabbrev ccopy Standard License goes here
+iabbrev ssig -- <cr>Sloane Veronica Allison Ripley<cr>sloane@lodesoft.io
+
+" Typo corrections
+
+" Python Mappings
+autocmd FileType python nnoremap <buffer> <localleader>c I#<esc>
